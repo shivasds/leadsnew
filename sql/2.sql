@@ -1,0 +1,1 @@
+ALTER TABLE  `close_callback_details` CHANGE  `sub_source`  `sub_source_id` INT( 11 ) NOT NULL ;

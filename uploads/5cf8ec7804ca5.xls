@@ -1,0 +1,17 @@
+echo $this->db->last_query(); // displaying sql query
+       exit();
+	   
+	   foreach ($object as $value) // convert obj array to normal array
+    $array[] = $value->post_id;
+	
+	
+	$ids=array();
+          foreach ($this->session->userdata('user_ids') as $id) {
+             // echo $id->id;
+              $ids[]=$id->id;
+          }
+        $list_id=implode(',', $ids);
+		
+		
+		
+		#189F69
