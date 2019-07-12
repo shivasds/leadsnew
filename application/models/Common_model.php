@@ -349,7 +349,7 @@ class Common_model extends MY_Model {
             {
                 
                 //echo $leads->leads->lead[0]->name;
-                //$count= $leads->count->count; 
+                $count= $leads->count; 
                 $source="Magicbricks";
                 //print_r($leads);die;
                  if(!empty($leads)){

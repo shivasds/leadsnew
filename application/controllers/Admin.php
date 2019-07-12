@@ -2022,7 +2022,7 @@ class Admin extends CI_Controller {
 	public function magicbricks_leads()
 	{
 		$leadsdata_magicbrick=$this->magic_brick_api();
-		echo"this is data";print_r($leadsdata_magicbrick);die;
+		//echo"this is data";print_r($leadsdata_magicbrick);die;
 		$data['name'] ="more";
 		$data['heading'] ="Magic Bricks Online Callbacks";
 		$this->common_model->save_online_leads($leadsdata_magicbrick);
