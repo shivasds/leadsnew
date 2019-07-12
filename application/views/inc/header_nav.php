@@ -47,7 +47,7 @@ $baseURL = ($this->session->userdata('user_type') == 'admin') ? base_url('admin'
                                     <ul class="dropdown-menu">
           <li><a tabindex="-1" href="<?php echo base_url().'admin/acres99_leads'?>">99 Acres</a></li>
           <li><a tabindex="-1" href="<?php echo base_url().'admin/magicbricks_leads'?>">Magic Bricks</a></li>
-          <li><a tabindex="-1" href="<?php echo base_url().'admin/commonfloor_leads'?>">Common Floor</a></li>
+          <!--<li><a tabindex="-1" href="<?php echo base_url().'admin/commonfloor_leads'?>">Common Floor</a></li>-->
 
         </ul></li>
                                      <?php
