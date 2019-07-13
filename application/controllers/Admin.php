@@ -2107,7 +2107,15 @@ class Admin extends CI_Controller {
 			foreach ($checked as $key) {
 				$return[] = $key;
 				$lead_data = $this->common_model->getFromId($key, 'id', 'online_leads');
-				$p_id=$this->common_model->get_project_id_by_name($lead_data->project);
+				if($lead_data->source=='99acres')
+				{
+				$p_id=$this->common_model->get_project_id_by_name($lead_data->project,213);
+				}
+				else
+				{
+				$p_id=$this->common_model->get_project_id_by_name($lead_data->project,214);
+				}
+				//echo $lead_data->project. $p_id['id'];die;
 				$data=$this->common_model->getsourceId($lead_data->source);
 
 				$data=array(

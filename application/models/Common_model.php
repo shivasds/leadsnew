@@ -373,12 +373,13 @@ class Common_model extends MY_Model {
                             //  print_r($row);
                               $userscount= $row['count'];
                               {
+                                $bid=214;
                                   if($userscount<=0)
                                   {
                                     if(!empty($projectname))
-                                    $this->insert_newproject($projectname);
+                                    $this->insert_newproject($projectname, $bid);
                                 else
-                                    $this->insert_newproject('no project specified');
+                                    $this->insert_newproject('Magicbricks', $bid);
                                     $query="insert into online_leads(source,name,phone,email,project,leadid,notes,lead_date,project_id) values('$source','$name','$mobile','$email','$projectname','$id','$notes','$lead_date','$project_id')";
                                 $this->db->query($query);  
 
@@ -423,12 +424,13 @@ class Common_model extends MY_Model {
                             //  print_r($row);
                               $userscount= $row['count'];
                               {
+                                $bid=213;
                                   if($userscount<=0 && $name!='')
                                   {
                                     if(!empty($projectname))
-                                    $this->insert_newproject($projectname);
+                                    $this->insert_newproject($projectname,$bid);
                                 else
-                                    $this->insert_newproject('no project specified');
+                                    $this->insert_newproject('99acres',$bid);
                               $query="insert into online_leads(source,name,phone,email,project,leadid,notes,lead_date,project_id) values('$source','$name','$mobile','$email','$projectname','$id','$notes','$lead_date','$project_id')";
                                 $this->db->query($query);
 
@@ -462,9 +464,10 @@ class Common_model extends MY_Model {
             return $query->row_array();
         }
 
-        function insert_newproject($p_name)
+        function insert_newproject($p_name,$bid)
         {
-            $stmt="select count(*) as count from project where name='$p_name'";    
+            //exit;
+            $stmt="select count(*) as count from project where name='$p_name' and builder_id=$bid";    
             $p_count=$this->db->query($stmt);
             if ( $p_count->num_rows() > 0 )
             {
@@ -474,7 +477,7 @@ class Common_model extends MY_Model {
             if($count<=0)
             {
             $date=date('Y-m-d h:m:s');
-            $stmt1="insert into project (name,builder_id,date_added)values('$p_name',214, '$date');"; 
+            $stmt1="insert into project (name,builder_id,date_added)values('$p_name',$bid, '$date');"; 
             //echo $stmt1;die; 
             $this->db->query($stmt1);
             }
@@ -483,16 +486,35 @@ class Common_model extends MY_Model {
                          
         }
 
-        function get_project_id_by_name($p_name)
+        function get_project_id_by_name($p_name,$bid)
         {
             $this->db->select('id')
                     ->from('project')
-                    ->where('name',$p_name);
+                    ->where('name',$p_name)
+                    ->where('builder_id',$bid);
            // $stmt2="select id from project where name = '$p_name'";
             //echo $stmt2;die;
            // $this->db->query();
             $query=$this->db->get();
             return $query->row_array();
+
+        }
+        function lead_count($sourcename,$date)
+        {
+                $this->db->select('count(*) as count')
+                         ->from('online_leads')
+                         ->where('lead_date',$date)
+                         ->where('source',$sourcename);
+                         $query=$this->db->get();
+                         return $query->row_array();
+        }
+        function total_lead_count($sourcename)
+        {
+                $this->db->select('count(*) as count')
+                         ->from('online_leads')
+                         ->where('source',$sourcename);
+                         $query=$this->db->get();
+                         return $query->row_array();
 
         }
 

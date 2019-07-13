@@ -43,10 +43,40 @@
 	}
 </style>
 <div class="container">
+	<?php
+	$source_name="";
+	if(count($leads)>0){
+		foreach ($leads as $lead) 
+					{
+					$source_name =	$lead->source;
+					}
+				}
+			$today_leads="";
+			$Yestreday_leads="";
+			$total_leads="";
+			$today=date('Y-m-d');
+			$yesterday=date('Y-m-d',strtotime("-1 days"));
+			$today_leads=$this->common_model->lead_count($source_name,$today);
+			$Yestreday_leads= $this->common_model->lead_count($source_name,$yesterday);
+			$total_lead_count=$this->common_model->total_lead_count($source_name);
+	?>
 	<div class="page-header">
 		<h1><?= $heading; ?></h1>
 	</div>
 	<br>
+	<table  class="table table-striped table-bordered dt-responsive" cellspacing="0" width="50">
+		<tr>
+			<th>Today's Leads :</th>
+			<th>Yestredays's Leads :</th>
+			<th>Total Leads :</th>
+		</tr>
+		<tr>
+			<td><?= $today_leads['count']?></td>
+			<td><?= $Yestreday_leads['count']?></td>
+			<td><?= $total_lead_count['count']?></td>
+		</tr>
+		
+	</table>
 	<form method="POST" class="main-from" action="<?php echo base_url()?>admin/save_online_leads">
 		<table id="example" class="table table-striped table-bordered dt-responsive" cellspacing="0" width="100%">
 			<thead>
