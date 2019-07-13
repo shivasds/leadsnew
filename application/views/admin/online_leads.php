@@ -44,13 +44,12 @@
 </style>
 <div class="container">
 	<?php
-	$source_name="";
-	if(count($leads)>0){
-		foreach ($leads as $lead) 
-					{
-					$source_name =	$lead->source;
-					}
-				}
+	$source_name=$this->uri->segment(2);
+	if($source_name=='magicbricks_leads')
+		$source_name='Magicbricks';
+	elseif ($source_name=='acres99_leads') {
+		$source_name='99acres';
+	}
 			$today_leads="";
 			$Yestreday_leads="";
 			$total_leads="";

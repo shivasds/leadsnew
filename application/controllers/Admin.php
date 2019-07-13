@@ -2149,13 +2149,15 @@ class Admin extends CI_Controller {
 				}
 				//$this->common_model->deleteWhere(array('id'=>$key), 'online_leads');
 				$this->common_model->updateWhere(array('id'=>$lead_data->id));
-				if($data['id']=30)
-					$ext="acres99_leads";
-				else
-					$ext="magicbricks_leads";
-				echo "<script>alert('added successfully');location.href='".base_url().'admin/'.$ext."'</script>";
+
 				//echo json_encode($return);
 			}
+			if($data['lead_source_id']==30)
+					$ext="acres99_leads";
+				elseif($data['lead_source_id']==29)
+					$ext="magicbricks_leads";
+				//echo site_url()
+				echo "<script>alert('added successfully');location.href='".base_url().'admin/'.$ext."'</script>";
 		}
 		//echo json_encode($return);
 	}
