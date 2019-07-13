@@ -2110,10 +2110,18 @@ class Admin extends CI_Controller {
 				if($lead_data->source=='99acres')
 				{
 				$p_id=$this->common_model->get_project_id_by_name($lead_data->project,213);
+				if($p_id=='')
+					$p_id=703;
+				}
+				elseif($lead_data->source=='Magicbricks')
+				{
+				$p_id=$this->common_model->get_project_id_by_name($lead_data->project,214);
+				if($p_id=='')
+					$p_id=703;
 				}
 				else
 				{
-				$p_id=$this->common_model->get_project_id_by_name($lead_data->project,214);
+					//$p_id=703;
 				}
 				//echo $lead_data->project. $p_id['id'];die;
 				$data=$this->common_model->getsourceId($lead_data->source);
