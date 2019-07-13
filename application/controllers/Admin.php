@@ -2094,6 +2094,7 @@ class Admin extends CI_Controller {
 
 	public function save_online_leads(){
 
+		$error=0;
 		if($this->input->post()){
 			$dept=$this->input->post('dept');
 			$callback_type=$this->input->post('callback_type');
@@ -2148,16 +2149,33 @@ class Admin extends CI_Controller {
 					$this->callback_model->add_callbacks($data);
 				}
 				//$this->common_model->deleteWhere(array('id'=>$key), 'online_leads');
+				else
+				{
+					$error=1;
+					echo "<script>alert('this lead already exists');</script>";
+					//$ext='admin/'.$this->session->userdata('ext');
+					//$this->load->view('admin/online_leads');
+				}
 				$this->common_model->updateWhere(array('id'=>$lead_data->id));
 
 				//echo json_encode($return);
 			}
 			if($data['lead_source_id']==30)
+			{
 					$ext="acres99_leads";
+					$this->session->set_userdata('ext',$ext);
+			}
 				elseif($data['lead_source_id']==29)
+				{
 					$ext="magicbricks_leads";
+					$this->session->set_userdata('ext',$ext);
+				}
 				//echo site_url()
+				if($error==0)
 				echo "<script>alert('added successfully');location.href='".base_url().'admin/'.$ext."'</script>";
+				else
+					echo "<script>location.href='".base_url().'admin/'.$ext."'</script>";
+
 		}
 		//echo json_encode($return);
 	}
