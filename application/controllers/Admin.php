@@ -2111,13 +2111,13 @@ class Admin extends CI_Controller {
 				{
 				$p_id=$this->common_model->get_project_id_by_name($lead_data->project,213);
 				if($p_id=='')
-					$p_id=703;
+					$p_id['id']=772;
 				}
 				elseif($lead_data->source=='Magicbricks')
 				{
 				$p_id=$this->common_model->get_project_id_by_name($lead_data->project,214);
 				if($p_id=='')
-					$p_id=703;
+					$p_id['id']=772;
 				}
 				else
 				{
