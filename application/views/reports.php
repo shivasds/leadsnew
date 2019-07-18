@@ -36,6 +36,7 @@
                 <input type="radio" class="form-control" id="lead_assignment_report" value="lead_assignment" name="reportType" >
             </div>
             <div class="clearfix"></div>
+            
             <?php if($this->session->userdata('user_type')!='City_head'){ ?>
             <label for = "site_visit_report" class="col-xs-5">Site Visit Done report:</label>
             <div class="col-xs-6">
